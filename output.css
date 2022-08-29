@@ -659,6 +659,14 @@ video {
   height: 0.25rem;
 }
 
+.h-10 {
+  height: 2.5rem;
+}
+
+.h-8 {
+  height: 2rem;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -691,6 +699,10 @@ video {
   width: 75%;
 }
 
+.w-1\/2 {
+  width: 50%;
+}
+
 .border-collapse {
   border-collapse: collapse;
 }
@@ -705,6 +717,10 @@ video {
 
 .resize {
   resize: both;
+}
+
+.flex-col {
+  flex-direction: column;
 }
 
 .items-center {
@@ -733,6 +749,10 @@ video {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-3 {
+  gap: 0.75rem;
 }
 
 .rounded-lg {
