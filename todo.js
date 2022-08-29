@@ -1,6 +1,6 @@
-const addTodo = document.querySelector('#button-todo');
-const input = document.querySelector('#input-field');
-const settime = document.querySelector('.set_time');
+// const addTodo = document.querySelector('#button-todo');
+// const input = document.querySelector('#input-field');
+// const settime = document.querySelector('.set_time');
 
 const days = [
   'Sunday',
@@ -61,7 +61,8 @@ class ToDoList {
   addTime() {
     const divWrapper = document.createElement('div');
     divWrapper.classList.add(
-      'mt-3',
+      'h-8',
+      'block',
       'text-sm',
       'text-[#8ea6c8]',
       'flex',
@@ -97,6 +98,7 @@ class ToDoList {
       this.saveTaskInLocalStorage();
     }
     this.render(this.tasks);
+    document.querySelector('input').innerHTML = '';
   }
 
   addListWithTasks(chosenTaskArray) {
@@ -216,7 +218,8 @@ class ToDoList {
       'flex',
       'justify-evenly',
       'items-center',
-      'w-full'
+      'w-full',
+      'gap-2'
     );
     const buttonAllTasks = document.createElement('button');
     const buttonCompletedTasks = document.createElement('button');
@@ -286,10 +289,10 @@ class ToDoList {
     this.selectedHtmlElement.appendChild(title);
 
     const inputWrapper = document.createElement('div');
-    inputWrapper.classList.add('flex', 'gap-2');
+    inputWrapper.classList.add('flex', 'flex-col', 'gap-2');
     const input = document.createElement('input');
     input.classList.add(
-      'w-9/12',
+      'w-full',
       'h-12',
       'bg-[#e0ebff]',
       'rounded-[7px]',
@@ -299,12 +302,50 @@ class ToDoList {
       'px-3'
     );
     input.setAttribute('type', 'text');
+    input.setAttribute('id', 'input-field');
     input.placeholder = 'Add / Search task';
     inputWrapper.appendChild(input);
 
+    const inputButtonsWrapper = document.createElement('div');
+    inputButtonsWrapper.classList.add('flex', 'w-full', 'gap-3');
+    inputWrapper.appendChild(inputButtonsWrapper);
+
+    const searchButton = document.createElement('button');
+
+    searchButton.classList.add(
+      'w-1/2',
+      'h-12',
+      'bg-[#e0ebff]',
+      'rounded-[7px]',
+      'flex',
+      'justify-center',
+      'text-sm',
+      'text-[#5b7a9d]',
+      'font-semibold',
+      'items-center'
+    );
+    searchButton.innerText = 'Search task';
+    inputButtonsWrapper.appendChild(searchButton);
+    searchButton.addEventListener('click', () => {
+      const input = document.querySelector('input');
+      this.searchedTask = input.value;
+
+      if (this.searchedTask !== '') {
+        if (this.tasks.length !== 0) {
+          this.foundTasks = this.tasks.filter((task) =>
+            task.content
+              .toLowerCase()
+              .replace(' ', '')
+              .includes(this.searchedTask.toLowerCase().replace(' ', ''))
+          );
+        }
+        this.render(this.foundTasks);
+      }
+    });
+
     const addTodo = document.createElement('button');
     addTodo.classList.add(
-      'w-1/4',
+      'w-1/2',
       'h-12',
       'bg-[#e0ebff]',
       'rounded-[7px]',
@@ -316,7 +357,7 @@ class ToDoList {
       'items-center'
     );
     addTodo.innerHTML = 'Add Todo';
-    inputWrapper.appendChild(addTodo);
+    inputButtonsWrapper.appendChild(addTodo);
     this.selectedHtmlElement.appendChild(inputWrapper);
 
     const sep = document.createElement('div');
