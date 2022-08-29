@@ -1,7 +1,3 @@
-// const addTodo = document.querySelector('#button-todo');
-// const input = document.querySelector('#input-field');
-// const settime = document.querySelector('.set_time');
-
 const days = [
   'Sunday',
   'Monday',
@@ -52,13 +48,13 @@ class ToDoList {
 
   render(chosenTaskArray) {
     document.querySelector('#container').innerHTML = '';
-    this.addTime();
-    this.addPromptFormForAddingTasks();
-    this.addFilteringButtons();
-    this.addListWithTasks(chosenTaskArray);
+    this.timer();
+    this.inputTaskswrapper();
+    this.filterButtons();
+    this.taskListBuilder(chosenTaskArray);
   }
 
-  addTime() {
+  timer() {
     const divWrapper = document.createElement('div');
     divWrapper.classList.add(
       'h-8',
@@ -101,7 +97,7 @@ class ToDoList {
     document.querySelector('input').innerHTML = '';
   }
 
-  addListWithTasks(chosenTaskArray) {
+  taskListBuilder(chosenTaskArray) {
     const ul = document.createElement('ul');
     chosenTaskArray.forEach((task, i) => {
       let li = document.createElement('li');
@@ -211,7 +207,7 @@ class ToDoList {
     this.selectedHtmlElement.appendChild(ul);
   }
 
-  addFilteringButtons() {
+  filterButtons() {
     const buttonsWrapper = document.createElement('div');
     buttonsWrapper.classList.add(
       'my-4',
@@ -282,7 +278,7 @@ class ToDoList {
     this.selectedHtmlElement.appendChild(buttonsWrapper);
   }
 
-  addPromptFormForAddingTasks() {
+  inputTaskswrapper() {
     const title = document.createElement('p');
     title.classList.add('text-xl', 'font-semibold', 'mt-2', 'text-[#063c76]');
     title.innerHTML = 'To-do List';
