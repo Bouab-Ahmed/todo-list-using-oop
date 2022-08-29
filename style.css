@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+
+@tailwind utilities;
+
+:root {
+  --borderWidth: 7px;
+  --height: 24px;
+  --width: 12px;
+  --borderColor: #ffffff;
+}
+
+.strike_none {
+  text-decoration: none;
+  /* text-decoration: line-through; */
+}
+.green {
+  background-color: green !important;
+}
+.check {
+  display: inline-block;
+  transform: rotate(45deg);
+  height: var(--height);
+  width: var(--width);
+  border-bottom: var(--borderWidth) solid var(--borderColor);
+  border-right: var(--borderWidth) solid var(--borderColor);
+}
